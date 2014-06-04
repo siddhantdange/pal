@@ -8,10 +8,13 @@
 
 #import "MainViewController.h"
 #import "LocAnnotation.h"
+#import "User.h"
+
+#import <Parse/Parse.h>
 
 @interface MainViewController ()
 @property (weak, nonatomic) IBOutlet UISegmentedControl *prioritySwitch;
-@property (weak, nonatomic) IBOutlet MKMapView *mapview;
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 @end
 
@@ -37,7 +40,15 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    [self.mapView setDelegate:self];
     
+    NSArray *tasks = [User sharedInstance].allTasks;
+    for (PFObject *task in tasks) {
+        PFGeoPoint *geopoint = task[@"geocenter"];
+        LocAnnotation *annotation = [[LocAnnotation alloc] init];
+        annotation.coordinate = CLLocationCoordinate2DMake(geopoint.latitude, geopoint.longitude);
+        [_mapView addAnnotation:annotation];
+    }
 }
 
 - (void)didReceiveMemoryWarning

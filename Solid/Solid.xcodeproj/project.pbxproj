@@ -44,6 +44,8 @@
 		25C10D951939E4EB00CED3A1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C10D941939E4EB00CED3A1 /* MainViewController.m */; };
 		25C10D981939E62500CED3A1 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C10D971939E62500CED3A1 /* SplashViewController.m */; };
 		25C10D9B193C435800CED3A1 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C10D9A193C435800CED3A1 /* User.m */; };
+		25C10D9E193DA7D400CED3A1 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C10D9D193DA7D400CED3A1 /* LoginViewController.m */; };
+		25C10DA1193DA95600CED3A1 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C10DA0193DA95600CED3A1 /* SignUpViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +109,10 @@
 		25C10D971939E62500CED3A1 /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
 		25C10D99193C435800CED3A1 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		25C10D9A193C435800CED3A1 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		25C10D9C193DA7D400CED3A1 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		25C10D9D193DA7D400CED3A1 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		25C10D9F193DA95600CED3A1 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		25C10DA0193DA95600CED3A1 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +262,10 @@
 				25C10D971939E62500CED3A1 /* SplashViewController.m */,
 				25C10D99193C435800CED3A1 /* User.h */,
 				25C10D9A193C435800CED3A1 /* User.m */,
+				25C10D9C193DA7D400CED3A1 /* LoginViewController.h */,
+				25C10D9D193DA7D400CED3A1 /* LoginViewController.m */,
+				25C10D9F193DA95600CED3A1 /* SignUpViewController.h */,
+				25C10DA0193DA95600CED3A1 /* SignUpViewController.m */,
 			);
 			name = ViewControllers;
 			path = ..;
@@ -361,6 +371,7 @@
 			files = (
 				25C10D9B193C435800CED3A1 /* User.m in Sources */,
 				25C10D8F1939D33300CED3A1 /* Task.m in Sources */,
+				25C10DA1193DA95600CED3A1 /* SignUpViewController.m in Sources */,
 				254527E8192FD26700A1633C /* PostViewController.m in Sources */,
 				25859EE8192D7E4100CCDD42 /* ViewController.m in Sources */,
 				25C10D951939E4EB00CED3A1 /* MainViewController.m in Sources */,
@@ -368,6 +379,7 @@
 				25C10D981939E62500CED3A1 /* SplashViewController.m in Sources */,
 				25C10D811933D06E00CED3A1 /* LocAnnotation.m in Sources */,
 				25859EE2192D7E4100CCDD42 /* AppDelegate.m in Sources */,
+				25C10D9E193DA7D400CED3A1 /* LoginViewController.m in Sources */,
 				25859EDE192D7E4100CCDD42 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,6 +14,7 @@
 @property (nonatomic, strong) PFUser *user;
 @property (nonatomic, strong) PFObject *venue;
 @property (nonatomic, strong) NSArray *myTask, *allTasks;
+@property (nonatomic, strong) NSString *emailUserId;
 
 
 

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>60ED271E-BB54-4A85-B647-A146EA11C617</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Solid</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>0F633DB5-5E4B-43BA-9A52-1D05781E432B</key>
+		<string>https://github.com/siddhantdange/pal</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Solid/Solid.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>0F633DB5-5E4B-43BA-9A52-1D05781E432B</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/siddhantdange/pal</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>0F633DB5-5E4B-43BA-9A52-1D05781E432B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>0F633DB5-5E4B-43BA-9A52-1D05781E432B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Solid</string>
+		</dict>
+	</array>
+</dict>
+</plist>

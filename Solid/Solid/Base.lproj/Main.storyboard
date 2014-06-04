@@ -116,7 +116,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="mapview" destination="dkz-Sf-gLr" id="CGs-97-8sh"/>
+                        <outlet property="mapView" destination="dkz-Sf-gLr" id="nzi-KA-hWD"/>
                         <outlet property="prioritySwitch" destination="wHo-5j-Fnq" id="GW4-CG-Scm"/>
                     </connections>
                 </viewController>
