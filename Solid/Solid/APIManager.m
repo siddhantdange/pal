@@ -42,10 +42,10 @@
 +(void)pullAllTasks:(void (^)(NSArray *))completion{
     
     //pull venue
-    __block PFObject *venue = [PFUser currentUser][@"venue"];
-    [venue fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+    __block PFRelation *venue = [[PFUser currentUser] relationForKey:@"venue"];
+    [[venue query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         __block User *user = [User sharedInstance];
-        user.venue = object;
+        user.venue = objects[0];
         
         //pull all tasks associated with venue
         PFRelation *tasksRelationByVenue = [user.venue relationForKey:@"tasks"];

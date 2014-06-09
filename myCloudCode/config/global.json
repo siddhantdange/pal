@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "Henchfriend": {
+            "applicationId": "amBfyHfkqcjWSIH1tteESSpiHI3ZEkz3Xuk0eGNF", 
+            "masterKey": "SrnUdHBcJ4AMH2ZqaRgM2zQbnqOTFsxHb82PL1jL"
+        }, 
+        "_default": {
+            "link": "Henchfriend"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.18"
+    }
+}

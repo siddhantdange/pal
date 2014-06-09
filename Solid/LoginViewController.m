@@ -66,25 +66,58 @@
     NSLog(@"user: %@", user);
     [User sharedInstance].user = user;
     PFObject *emailUser;
+    
+    //if just signed up then get email user
     if([User sharedInstance].emailUserId){
         emailUser = [PFObject objectWithoutDataWithClassName:@"_User" objectId:[User sharedInstance].emailUserId];   
     }
     
+    //if user email field is empty and no email user then we know user hasn't signed up
     if(!user[@"email"] && !emailUser){
         [self presentViewController:_signupVC animated:YES completion:nil];
     } else{
+        
+        //if email field linked then log in directly else first signup setup hasnt finished
         if(user[@"email"]){
+//            [PFCloud callFunctionInBackground:@"linkVenue"
+//                               withParameters:@{}
+//                                        block:^(NSArray *results, NSError *error) {
+//                                            if (!error) {
+//                                                // this is where you handle the results and change the UI.
+//                                                [logInController dismissViewControllerAnimated:YES completion:nil];
+//                                                NSLog(@"results: %@", results);
+//                                            } else{
+//                                                NSLog(@"error: %@", error);
+//                                            }
+//                                        }];
             [logInController dismissViewControllerAnimated:YES completion:nil];
+            
+        
         } else{
            
+            //finish first signup setup by fetching temporary user and checking if email verified
             [emailUser fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
                 if(!error){
                     int verified = ((NSString*)object[@"emailVerified"]).intValue;
+                    
+                    //if verified then pull email and link with venue - first sign up case else prompt user to confirm email
                     if(verified == 1){
                         user[@"email"] = [NSString stringWithFormat:@"%@.com", object[@"email"]];
                         
-                        [user saveInBackground];
-                        [logInController dismissViewControllerAnimated:YES completion:nil];
+                        [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                            [PFCloud callFunctionInBackground:@"linkVenue"
+                                               withParameters:@{}
+                                                        block:^(NSArray *results, NSError *error) {
+                                                            if (!error) {
+                                                                // this is where you handle the results and change the UI.
+                                                                [logInController dismissViewControllerAnimated:YES completion:nil];
+                                                                NSLog(@"results: %@", results);
+                                                            } else{
+                                                                NSLog(@"error: %@", error);
+                                                            }
+                                                        }];
+                        }];
+                        
                     } else{
                         NSLog(@"confirm email!");
                     }

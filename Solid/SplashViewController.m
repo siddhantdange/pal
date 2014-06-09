@@ -26,24 +26,24 @@
     
     [_spinner startAnimating];
     
-   // if (![PFUser currentUser]) {
+    if (![PFUser currentUser]) {
         // Customize the Log In View Controller
         LoginViewController *logInViewController = [[LoginViewController alloc] initVC];
         [logInViewController setDelegate:logInViewController];
         
         // Present Log In View Controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
-//    } else{
-//        //load data
-//        [APIManager pullAllTasks:^(NSArray *tasks) {
-//            NSLog(@"tasks: %@", tasks);
-//            
-//            //move to next VC
-//            [self proceedToNextVC];
-//        }];
-//        
-//        
-//    }
+    } else{
+        //load data
+        [APIManager pullAllTasks:^(NSArray *tasks) {
+            NSLog(@"tasks: %@", tasks);
+            
+            //move to next VC
+            [self proceedToNextVC];
+        }];
+        
+        
+    }
 }
 
 -(void)proceedToNextVC{
