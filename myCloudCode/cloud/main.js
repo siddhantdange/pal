@@ -1,6 +1,16 @@
 
 // Use Parse.Cloud.define to define as many cloud functions as you want.
 // For example:
+Parse.Cloud.define("deleteUser", function(request, response){
+	Parse.Cloud.useMasterKey();
+	var user = ParseObject.createWithoutData('_User', request.params.userID);
+	user.destroy().then(function(result){
+		response.success(1);
+	}, function(error){
+		response.error(error);
+	});
+});
+
 Parse.Cloud.define("linkVenue", function(request, response) {   
   Parse.Cloud.useMasterKey();
   console.log(request);
