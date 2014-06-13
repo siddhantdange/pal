@@ -28,9 +28,9 @@
     
     if (![PFUser currentUser]) {
         // Customize the Log In View Controller
-        LoginViewController *logInViewController = [[LoginViewController alloc] initVC];
+        LoginViewController *logInViewController = [[LoginViewController alloc] initVC];   
         [logInViewController setDelegate:logInViewController];
-        
+
         // Present Log In View Controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
     } else{

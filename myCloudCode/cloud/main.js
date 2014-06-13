@@ -1,16 +1,5 @@
 
-// Use Parse.Cloud.define to define as many cloud functions as you want.
-// For example:
-Parse.Cloud.define("deleteUser", function(request, response){
-	Parse.Cloud.useMasterKey();
-	var user = ParseObject.createWithoutData('_User', request.params.userID);
-	user.destroy().then(function(result){
-		response.success(1);
-	}, function(error){
-		response.error(error);
-	});
-});
-
+//for new user setup- link new user with a venue
 Parse.Cloud.define("linkVenue", function(request, response) {   
   Parse.Cloud.useMasterKey();
   console.log(request);
@@ -27,7 +16,7 @@ Parse.Cloud.define("linkVenue", function(request, response) {
     		venueObj = results[0];
 	    	var userRelation = venueObj.relation('users');
 	    	userRelation.add(user);
-	    } else{
+	    } else{ //if venue doesn't exist then make a new one with a new 'place' - in production remove this   
 	    	var VenueClass = Parse.Object.extend("Venue");   
 			venueObj = new VenueClass();
 
@@ -47,4 +36,24 @@ Parse.Cloud.define("linkVenue", function(request, response) {
   		console.log(error);
   		response.error(error);
   	});
+});
+
+//for new user setup- delete second email account created while signup
+Parse.Cloud.define("deleteUser", function(request, response){   
+	Parse.Cloud.useMasterKey();
+	var query = new Parse.Query(Parse.User);
+	console.log('id: ' + query);
+	query.get('' + request.params.userID, {
+		userMasterKey: true,
+		success: function(result){
+			result.destroy().then(function(result){
+				response.success(1);
+			}, function(error){
+				response.error(error);
+			});
+		},
+		error : function(error){
+
+		}
+	});
 });

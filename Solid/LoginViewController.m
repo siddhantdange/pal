@@ -30,7 +30,7 @@
 -(id)initVC{
     self = [super init];
     [self setFields:PFLogInFieldsFacebook];
-    [self setFacebookPermissions:[NSArray arrayWithObjects:@"friends_about_me", nil]];   
+    [self setFacebookPermissions:[NSArray arrayWithObjects:@"friends_about_me", nil]];
     
     // Create the sign up view controller
     _signupVC = [[SignUpViewController alloc] init];
@@ -49,9 +49,9 @@
     [super viewWillAppear:animated];
 	// Do any additional setup after loading the view.
     
-//    if([PFUser currentUser][@"emailVerified"]){
-//        NSLog(@"please verify email!");
-//    }
+    //    if([PFUser currentUser][@"emailVerified"]){
+    //        NSLog(@"please verify email!");
+    //    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,14 +62,14 @@
 
 #pragma -mark PFLoginViewController Delegate Methods
 
--(void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user{   
+-(void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user{
     NSLog(@"user: %@", user);
     [User sharedInstance].user = user;
     PFObject *emailUser;
     
     //if just signed up then get email user
     if([User sharedInstance].emailUserId){
-        emailUser = [PFObject objectWithoutDataWithClassName:@"_User" objectId:[User sharedInstance].emailUserId];   
+        emailUser = [PFObject objectWithoutDataWithClassName:@"_User" objectId:[User sharedInstance].emailUserId];
     }
     
     //if user email field is empty and no email user then we know user hasn't signed up
@@ -79,22 +79,22 @@
         
         //if email field linked then log in directly else first signup setup hasnt finished
         if(user[@"email"]){
-//            [PFCloud callFunctionInBackground:@"linkVenue"
-//                               withParameters:@{}
-//                                        block:^(NSArray *results, NSError *error) {
-//                                            if (!error) {
-//                                                // this is where you handle the results and change the UI.
-//                                                [logInController dismissViewControllerAnimated:YES completion:nil];
-//                                                NSLog(@"results: %@", results);
-//                                            } else{
-//                                                NSLog(@"error: %@", error);
-//                                            }
-//                                        }];
+            //            [PFCloud callFunctionInBackground:@"linkVenue"
+            //                               withParameters:@{}
+            //                                        block:^(NSArray *results, NSError *error) {
+            //                                            if (!error) {
+            //                                                // this is where you handle the results and change the UI.
+            //                                                [logInController dismissViewControllerAnimated:YES completion:nil];
+            //                                                NSLog(@"results: %@", results);
+            //                                            } else{
+            //                                                NSLog(@"error: %@", error);
+            //                                            }
+            //                                        }];
             [logInController dismissViewControllerAnimated:YES completion:nil];
             
-        
+            
         } else{
-           
+            
             //finish first signup setup by fetching temporary user and checking if email verified
             [emailUser fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
                 if(!error){
@@ -109,9 +109,17 @@
                                                withParameters:@{}
                                                         block:^(NSArray *results, NSError *error) {
                                                             if (!error) {
-                                                                // this is where you handle the results and change the UI.
-                                                                [logInController dismissViewControllerAnimated:YES completion:nil];
-                                                                NSLog(@"results: %@", results);
+                                                                [PFCloud callFunctionInBackground:@"deleteUser"
+                                                                                   withParameters:@{@"userID" : [User sharedInstance].emailUserId}
+                                                                                            block:^(NSArray *results, NSError *error) {
+                                                                                                if (!error) {
+                                                                                                    // this is where you handle the results and change the UI.
+                                                                                                    [logInController dismissViewControllerAnimated:YES completion:nil];
+                                                                                                    NSLog(@"results: %@", results);
+                                                                                                } else{
+                                                                                                    NSLog(@"error: %@", error);
+                                                                                                }
+                                                                                            }];
                                                             } else{
                                                                 NSLog(@"error: %@", error);
                                                             }
@@ -135,7 +143,7 @@
 
 -(void)logInViewControllerDidCancelLogIn:(PFLogInViewController *)logInController{
     
-
+    
 }
 
 @end
