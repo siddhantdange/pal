@@ -57,3 +57,17 @@ Parse.Cloud.define("deleteUser", function(request, response){
 		}
 	});
 });
+
+//for new user setup- delete second email account created while signup
+Parse.Cloud.define("acceptTask", function(request, response){   
+	Parse.Cloud.useMasterKey();
+	var task = request.params.task;
+
+	//update task -> acceptor, status
+
+	//update user -> accepted tasks
+	//send push notification to task owner that their task has been accepted by __name__
+
+
+	//update venue -> move from regular to 'accepted tasks'
+});

@@ -112,7 +112,7 @@
                                                                 [PFCloud callFunctionInBackground:@"deleteUser"
                                                                                    withParameters:@{@"userID" : [User sharedInstance].emailUserId}
                                                                                             block:^(NSArray *results, NSError *error) {
-                                                                                                if (!error) {
+                                                                          if (!error) {
                                                                                                     // this is where you handle the results and change the UI.
                                                                                                     [logInController dismissViewControllerAnimated:YES completion:nil];
                                                                                                     NSLog(@"results: %@", results);

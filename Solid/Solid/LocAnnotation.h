@@ -9,6 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
+@class   Task;
 @interface LocAnnotation : NSObject <MKAnnotation>
+
+@property (nonatomic, strong) Task *task;
+
+
+-(id)initWithCoordinate:(CLLocationCoordinate2D)cl title:(NSString*)title;   
+
+-(void)setCoordinate:(CLLocationCoordinate2D)newCoordinate;
+-(void)setDescriptionText:(NSString *)descriptionText;
 
 @end

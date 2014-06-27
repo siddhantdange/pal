@@ -11,12 +11,13 @@
 
 @interface Task : NSObject
 
-@property (nonatomic, strong) id owner, acceptor;
-@property (nonatomic, strong) PFObject *obj, *venue;
+@property (nonatomic, strong) PFObject *obj, *venue, *owner;
 
 @property (nonatomic, assign) int urgency, radius;
 @property (nonatomic, assign) float amount;
 @property (nonatomic, strong) NSString *descriptionText;
 @property (nonatomic, strong) PFGeoPoint *geocenter;
+
++(Task*)taskFromPFObject:(PFObject*)obj;
 
 @end

@@ -40,7 +40,6 @@
 	// Do any additional setup after loading the view.
     
     [self.mapView setDelegate:self];
-    LocAnnotation *an = [[LocAnnotation alloc] init];
     [self.mapView setUserTrackingMode:MKUserTrackingModeFollow];
     [self.mapView setShowsUserLocation:YES];
     
@@ -62,8 +61,8 @@
     float amount = self.amountTextField.text.floatValue;
     NSString *description = self.descriptionTextField.text;
     PFUser *user = [PFUser currentUser];
-    float lonDelta = _mapView.region.span.longitudeDelta;
-    int radius = [[[CLLocation alloc] initWithLatitude:_mapView.center.x longitude:_mapView.center.y - lonDelta] distanceFromLocation:[[CLLocation alloc] initWithLatitude:_mapView.center.x longitude:_mapView.center.y + lonDelta]];
+    float latDelta = _mapView.region.span.latitudeDelta/2.0;
+    int radius = [[[CLLocation alloc] initWithLatitude:_mapView.center.x longitude:_mapView.center.y - latDelta] distanceFromLocation:[[CLLocation alloc] initWithLatitude:_mapView.center.x longitude:_mapView.center.y + latDelta]];
     CLLocationCoordinate2D location2d = _mapView.region.center;
     PFGeoPoint *location = [PFGeoPoint geoPointWithLatitude:location2d.latitude longitude:location2d.longitude];
     
@@ -71,8 +70,7 @@
     task.urgency = urgency;
     task.amount = amount;
     task.descriptionText = description;
-    task.owner = user;
-    task.acceptor = [NSNull null];
+    task.owner = [User sharedInstance].user;
     task.geocenter = location;
     task.radius = radius;
     task.venue = [User sharedInstance].venue;

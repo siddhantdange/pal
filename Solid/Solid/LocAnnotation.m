@@ -18,20 +18,23 @@
 
 @implementation LocAnnotation
 
--(id)initWithCoordinate:(CLLocationCoordinate2D)cl{
+-(id)initWithCoordinate:(CLLocationCoordinate2D)cl title:(NSString*)title{   
     
     if(!self){
         self = [self init];
-        self.title = @"title";
-        self.descriptionText = @"wheee";
     }
     
     self.coordinatePoint = cl;
+    self.title = title;
     return self;
 }
 
 -(void)setCoordinate:(CLLocationCoordinate2D)newCoordinate{
     self.coordinatePoint = newCoordinate;
+}
+
+-(void)setDescriptionText:(NSString *)descriptionText{
+    _descriptionText = descriptionText;
 }
 
 -(CLLocationCoordinate2D)coordinate{

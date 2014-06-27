@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Siddhant Dange. All rights reserved.
 //
 
-#import "ViewController.h"
 #import <MapKit/MapKit.h>
+#import "Screen.h"
 
-@interface MainViewController : ViewController <MKMapViewDelegate>
+@interface MainViewController : Screen <MKMapViewDelegate>
 
 @end

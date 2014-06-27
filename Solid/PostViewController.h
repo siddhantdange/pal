@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "Screen.h"
 
-@interface PostViewController : UIViewController <MKMapViewDelegate, UITextFieldDelegate>
+@interface PostViewController : Screen <MKMapViewDelegate, UITextFieldDelegate>   
 
 @end

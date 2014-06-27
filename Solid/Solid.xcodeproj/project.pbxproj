@@ -27,13 +27,17 @@
 		25859EDE192D7E4100CCDD42 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 25859EDD192D7E4100CCDD42 /* main.m */; };
 		25859EE2192D7E4100CCDD42 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 25859EE1192D7E4100CCDD42 /* AppDelegate.m */; };
 		25859EE5192D7E4100CCDD42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25859EE3192D7E4100CCDD42 /* Main.storyboard */; };
-		25859EE8192D7E4100CCDD42 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25859EE7192D7E4100CCDD42 /* ViewController.m */; };
 		25859EEA192D7E4100CCDD42 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25859EE9192D7E4100CCDD42 /* Images.xcassets */; };
 		25859EF1192D7E4100CCDD42 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25859EF0192D7E4100CCDD42 /* XCTest.framework */; };
 		25859EF2192D7E4100CCDD42 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25859ED1192D7E4100CCDD42 /* Foundation.framework */; };
 		25859EF3192D7E4100CCDD42 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25859ED5192D7E4100CCDD42 /* UIKit.framework */; };
 		25859EFB192D7E4100CCDD42 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 25859EF9192D7E4100CCDD42 /* InfoPlist.strings */; };
 		25859EFD192D7E4100CCDD42 /* SolidTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 25859EFC192D7E4100CCDD42 /* SolidTests.m */; };
+		25BF5C23195815D300425652 /* LocationPinPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BF5C22195815D300425652 /* LocationPinPopup.m */; };
+		25BF5C25195815E800425652 /* LocationPinPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25BF5C24195815E800425652 /* LocationPinPopup.xib */; };
+		25BF5C281959521D00425652 /* Screen.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BF5C271959521D00425652 /* Screen.m */; };
+		25BF5C2C195954A800425652 /* TaskDetailScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BF5C2B195954A800425652 /* TaskDetailScreen.m */; };
+		25BF5C2E1959561400425652 /* TaskDetailScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25BF5C2D1959561400425652 /* TaskDetailScreen.xib */; };
 		25C10D811933D06E00CED3A1 /* LocAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 25C10D801933D06E00CED3A1 /* LocAnnotation.m */; };
 		25C10D831935BB1100CED3A1 /* arrest.png in Resources */ = {isa = PBXBuildFile; fileRef = 25C10D821935BB1100CED3A1 /* arrest.png */; };
 		25C10D8519371F0A00CED3A1 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25C10D8419371F0A00CED3A1 /* Accounts.framework */; };
@@ -84,14 +88,20 @@
 		25859EE0192D7E4100CCDD42 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		25859EE1192D7E4100CCDD42 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		25859EE4192D7E4100CCDD42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		25859EE6192D7E4100CCDD42 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = Solid/ViewController.h; sourceTree = "<group>"; };
-		25859EE7192D7E4100CCDD42 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = Solid/ViewController.m; sourceTree = "<group>"; };
 		25859EE9192D7E4100CCDD42 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		25859EEF192D7E4100CCDD42 /* SolidTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SolidTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		25859EF0192D7E4100CCDD42 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		25859EF8192D7E4100CCDD42 /* SolidTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SolidTests-Info.plist"; sourceTree = "<group>"; };
 		25859EFA192D7E4100CCDD42 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		25859EFC192D7E4100CCDD42 /* SolidTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SolidTests.m; sourceTree = "<group>"; };
+		25BF5C21195815D300425652 /* LocationPinPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationPinPopup.h; sourceTree = "<group>"; };
+		25BF5C22195815D300425652 /* LocationPinPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationPinPopup.m; sourceTree = "<group>"; };
+		25BF5C24195815E800425652 /* LocationPinPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationPinPopup.xib; sourceTree = "<group>"; };
+		25BF5C261959521D00425652 /* Screen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Screen.h; path = ../../../../../Modules/iOS/UI/SidUI/SidUI/Screen.h; sourceTree = "<group>"; };
+		25BF5C271959521D00425652 /* Screen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Screen.m; path = ../../../../../Modules/iOS/UI/SidUI/SidUI/Screen.m; sourceTree = "<group>"; };
+		25BF5C2A195954A800425652 /* TaskDetailScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDetailScreen.h; sourceTree = "<group>"; };
+		25BF5C2B195954A800425652 /* TaskDetailScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailScreen.m; sourceTree = "<group>"; };
+		25BF5C2D1959561400425652 /* TaskDetailScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskDetailScreen.xib; sourceTree = "<group>"; };
 		25C10D7F1933D06E00CED3A1 /* LocAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocAnnotation.h; sourceTree = "<group>"; };
 		25C10D801933D06E00CED3A1 /* LocAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocAnnotation.m; sourceTree = "<group>"; };
 		25C10D821935BB1100CED3A1 /* arrest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrest.png; sourceTree = "<group>"; };
@@ -202,19 +212,15 @@
 		25859ED7192D7E4100CCDD42 /* Solid */ = {
 			isa = PBXGroup;
 			children = (
+				25BF5C0F194AF46900425652 /* Other */,
+				25BF5C0E194AF45E00425652 /* Views */,
 				25859F06192D7E5200CCDD42 /* ViewControllers */,
 				25859EE0192D7E4100CCDD42 /* AppDelegate.h */,
 				25859EE1192D7E4100CCDD42 /* AppDelegate.m */,
 				25859EE3192D7E4100CCDD42 /* Main.storyboard */,
 				25859EE9192D7E4100CCDD42 /* Images.xcassets */,
 				25859ED8192D7E4100CCDD42 /* Supporting Files */,
-				25C10D7F1933D06E00CED3A1 /* LocAnnotation.h */,
-				25C10D801933D06E00CED3A1 /* LocAnnotation.m */,
 				25C10D821935BB1100CED3A1 /* arrest.png */,
-				25C10D8A1939D30900CED3A1 /* APIManager.h */,
-				25C10D8B1939D30900CED3A1 /* APIManager.m */,
-				25C10D8D1939D33300CED3A1 /* Task.h */,
-				25C10D8E1939D33300CED3A1 /* Task.m */,
 				25C10D901939DC8D00CED3A1 /* Constants.h */,
 			);
 			path = Solid;
@@ -252,8 +258,8 @@
 		25859F06192D7E5200CCDD42 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				25859EE6192D7E4100CCDD42 /* ViewController.h */,
-				25859EE7192D7E4100CCDD42 /* ViewController.m */,
+				25BF5C291959522C00425652 /* Screen */,
+				25BF5C2F1959561700425652 /* TaskDetailScreen */,
 				254527E6192FD26700A1633C /* PostViewController.h */,
 				254527E7192FD26700A1633C /* PostViewController.m */,
 				25C10D931939E4EB00CED3A1 /* MainViewController.h */,
@@ -269,6 +275,57 @@
 			);
 			name = ViewControllers;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		25BF5C0E194AF45E00425652 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				25BF5C30195C017400425652 /* LocationPinPopup */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		25BF5C0F194AF46900425652 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				25C10D8D1939D33300CED3A1 /* Task.h */,
+				25C10D8E1939D33300CED3A1 /* Task.m */,
+				25C10D8A1939D30900CED3A1 /* APIManager.h */,
+				25C10D8B1939D30900CED3A1 /* APIManager.m */,
+				25C10D7F1933D06E00CED3A1 /* LocAnnotation.h */,
+				25C10D801933D06E00CED3A1 /* LocAnnotation.m */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
+		25BF5C291959522C00425652 /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				25BF5C261959521D00425652 /* Screen.h */,
+				25BF5C271959521D00425652 /* Screen.m */,
+			);
+			name = Screen;
+			path = Solid;
+			sourceTree = "<group>";
+		};
+		25BF5C2F1959561700425652 /* TaskDetailScreen */ = {
+			isa = PBXGroup;
+			children = (
+				25BF5C2A195954A800425652 /* TaskDetailScreen.h */,
+				25BF5C2B195954A800425652 /* TaskDetailScreen.m */,
+				25BF5C2D1959561400425652 /* TaskDetailScreen.xib */,
+			);
+			name = TaskDetailScreen;
+			sourceTree = "<group>";
+		};
+		25BF5C30195C017400425652 /* LocationPinPopup */ = {
+			isa = PBXGroup;
+			children = (
+				25BF5C21195815D300425652 /* LocationPinPopup.h */,
+				25BF5C22195815D300425652 /* LocationPinPopup.m */,
+				25BF5C24195815E800425652 /* LocationPinPopup.xib */,
+			);
+			name = LocationPinPopup;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,7 +405,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				25859EEA192D7E4100CCDD42 /* Images.xcassets in Resources */,
+				25BF5C25195815E800425652 /* LocationPinPopup.xib in Resources */,
 				25859EDC192D7E4100CCDD42 /* InfoPlist.strings in Resources */,
+				25BF5C2E1959561400425652 /* TaskDetailScreen.xib in Resources */,
 				25C10D831935BB1100CED3A1 /* arrest.png in Resources */,
 				25859EE5192D7E4100CCDD42 /* Main.storyboard in Resources */,
 			);
@@ -370,11 +429,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				25C10D9B193C435800CED3A1 /* User.m in Sources */,
+				25BF5C281959521D00425652 /* Screen.m in Sources */,
 				25C10D8F1939D33300CED3A1 /* Task.m in Sources */,
+				25BF5C23195815D300425652 /* LocationPinPopup.m in Sources */,
 				25C10DA1193DA95600CED3A1 /* SignUpViewController.m in Sources */,
 				254527E8192FD26700A1633C /* PostViewController.m in Sources */,
-				25859EE8192D7E4100CCDD42 /* ViewController.m in Sources */,
 				25C10D951939E4EB00CED3A1 /* MainViewController.m in Sources */,
+				25BF5C2C195954A800425652 /* TaskDetailScreen.m in Sources */,
 				25C10D8C1939D30900CED3A1 /* APIManager.m in Sources */,
 				25C10D981939E62500CED3A1 /* SplashViewController.m in Sources */,
 				25C10D811933D06E00CED3A1 /* LocAnnotation.m in Sources */,

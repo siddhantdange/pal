@@ -17,7 +17,9 @@ static User *gInstance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         gInstance = [[User alloc] init];
-        
+        gInstance.ownedTasks = [NSMutableArray new];
+        gInstance.visibleTasks = [NSMutableArray new];
+        gInstance.acceptedTasks = [NSMutableArray new];
         
     });
             

@@ -7,14 +7,17 @@
 //
 
 #import "MainViewController.h"
+#import "LocationPinPopup.h"
 #import "LocAnnotation.h"
 #import "User.h"
+#import "Task.h"
 
 #import <Parse/Parse.h>
 
 @interface MainViewController ()
 @property (weak, nonatomic) IBOutlet UISegmentedControl *prioritySwitch;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (nonatomic, strong) LocationPinPopup *popup;
 
 @end
 
@@ -35,48 +38,158 @@
 - (IBAction)nextTasks:(id)sender {
 }
 
-- (void)viewDidLoad
-{
+-(void)viewDidLoad{
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
     [self.mapView setDelegate:self];
+    [self.mapView setUserTrackingMode:MKUserTrackingModeFollow];
+    [self.mapView setShowsUserLocation:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
-    NSArray *tasks = [User sharedInstance].allTasks;
+    //remove annotations and update with local copy (from another screen or just loaded)
+    [_mapView removeAnnotations:_mapView.annotations];
+    
+    NSArray *tasks = [User sharedInstance].visibleTasks;
     for (PFObject *task in tasks) {
         PFGeoPoint *geopoint = task[@"geocenter"];
-        LocAnnotation *annotation = [[LocAnnotation alloc] init];
-        annotation.coordinate = CLLocationCoordinate2DMake(geopoint.latitude, geopoint.longitude);
+        LocAnnotation *annotation = [[LocAnnotation alloc] initWithCoordinate:CLLocationCoordinate2DMake(geopoint.latitude, geopoint.longitude) title:@"title"];
+        annotation.task = [Task taskFromPFObject:task];
         [_mapView addAnnotation:annotation];
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+#pragma -mark MKMapViewDelegate
+
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
+    MKCoordinateRegion mapRegion;
+    mapRegion.center = self.mapView.userLocation.coordinate;
+    mapRegion.span = MKCoordinateSpanMake(0.2, 0.2);
+    [self.mapView setRegion:mapRegion animated: YES];
 }
-
-
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
     static NSString *identifier = @"LocAnnotation";
     if ([annotation isKindOfClass:[LocAnnotation class]]) {
-        
-        MKPinAnnotationView *annotationView = (MKPinAnnotationView *) [self.mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+        LocAnnotation *locAnn = (LocAnnotation*)annotation;
+        LocationPinPopup *annotationView = (LocationPinPopup *) [self.mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
         if (annotationView == nil) {
-            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+            annotationView = [[LocationPinPopup alloc] initWithTask:locAnn.task annotation:locAnn reuseIdentifier:identifier popupBlock:^{
+                [self goToScreen:@"TaskDetailScreen" animated:YES withData:@{ @"task": locAnn.task}];
+            }];
             annotationView.enabled = YES;
-            annotationView.canShowCallout = YES;
+            
+            
         } else {
             annotationView.annotation = annotation;
         }
         
-        NSLog(@"%@", annotationView);
         return annotationView;
+        
+        //TODO find out how accepted, owned, and visible task system works
+        //write cloud code for accepting tasks
+        //  updates cloud
+        //  send push notification to task owner
+        //once accepted work on 'main screen'
+        //later- profile view: owned tasks, money made, number tasks done, tasks done detail?, account    details
+        //work on image uploads/check
+        //work on messaging
+        //set up payments integration
+        //finish raw demo
+        
+        //cleanup
+        //work on login rearchitecture - modularization
+        //refactor all view controllers to screens, storyboard to xibs
+        //make model objects using thrift
+        
+        //parallel
+        //find a designer, maybe design team is good enough?
+        //find backend guy
+        //find good domain name, setup website
+        
+        //after
+        //android
+        //metrics
+        //move backend from parse to soa
     }
     
     return nil;
+}
+
+- (MKOverlayView *)mapView:(MKMapView *)map viewForOverlay:(id <MKOverlay>)overlay
+{
+    MKCircleView *circleView = [[MKCircleView alloc] initWithOverlay:overlay];
+    circleView.strokeColor = [UIColor redColor];
+    circleView.fillColor = [[UIColor redColor] colorWithAlphaComponent:0.4];
+    return circleView;
+}
+
+-(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
+    id<MKAnnotation> annotation = view.annotation;
+    if([annotation isKindOfClass:[LocAnnotation class]]){
+        LocAnnotation *locAnn = (LocAnnotation*)annotation;
+        //fade out all other pins
+        NSArray *annotations = mapView.annotations;
+        for (id<MKAnnotation> anno in annotations) {
+            if(anno != locAnn){
+                MKAnnotationView *view = [mapView viewForAnnotation:anno];
+                [UIView animateWithDuration:0.2f animations:^{
+                    [view setAlpha:0.0f];
+                    [view setUserInteractionEnabled:NO];
+                }];
+            }
+        }
+        
+        //draw radius around pin
+        MKCircle *circle = [MKCircle circleWithCenterCoordinate:locAnn.coordinate radius:locAnn.task.radius];
+        [mapView addOverlay:circle];
+        
+        
+        //add touch detector so when hit outside, disappear radius and make other pins appear
+        UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:      @selector(showPins:)];
+        [mapView addGestureRecognizer:recognizer];
+        
+        
+    }
+}
+
+#pragma -mark UI Actions
+
+-(void)showPins:(UIGestureRecognizer*)recognizer{
+    NSLog(@"view: %@", recognizer.view);
+    
+    //if popup hit
+    if([_popup hitTest:[recognizer locationInView:recognizer.view] withEvent:NULL]){
+        NSLog(@"popup hit!");
+    } else{
+        
+        //clear view
+        [_popup close];
+        _popup = nil;
+        
+        //clear radius
+        [_mapView removeOverlays:_mapView.overlays];
+        if(recognizer.state == UIGestureRecognizerStateRecognized) {
+            NSLog(@"%@", [_mapView hitTest:[recognizer locationInView:recognizer.view] withEvent:NULL]);
+            if([[_mapView hitTest:[recognizer locationInView:recognizer.view] withEvent:NULL] isKindOfClass:NSClassFromString(@"MKNewAnnotationContainerView")]){
+                
+                //show pins
+                NSArray *annotations = _mapView.annotations;
+                for (id<MKAnnotation> anno in annotations) {
+                    MKAnnotationView *view = [_mapView viewForAnnotation:anno];
+                    [UIView animateWithDuration:0.2f animations:^{
+                        [view setAlpha:1.0f];
+                        [view setUserInteractionEnabled:YES];
+                    }];
+                }
+            }
+        }
+    }
 }
 
 @end

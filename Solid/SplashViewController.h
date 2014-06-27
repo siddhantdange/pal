@@ -6,9 +6,10 @@
 //  Copyright (c) 2014 Siddhant Dange. All rights reserved.
 //
 
-#import "ViewController.h"
+#import <Parse/Parse.h>
+#import "Screen.h"
 
-@interface SplashViewController : ViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
+@interface SplashViewController : Screen <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>   
 
 
 @end

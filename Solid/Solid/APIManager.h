@@ -18,4 +18,6 @@
 
 +(void)pullAllTasks:(void(^)(NSArray*))completion;
 
++(void)acceptTask:(Task*)task sent:(void(^)(void))sentBlock completed:(void(^)(NSError*))completionBlock;
+
 @end
