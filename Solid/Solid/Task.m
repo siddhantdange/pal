@@ -27,4 +27,18 @@
     return task;
 }
 
+
+
++(PFObject*)PFObjectFromTask:(Task*)task{
+    PFObject *taskObj = [PFObject objectWithClassName:@"Task"];
+    taskObj[kUrgencyKey] = @(task.urgency);
+    taskObj[kAmountKey] = @(task.amount);
+    taskObj[kDescriptionKey] = task.descriptionText;
+    taskObj[kOwnerKey] = task.owner;
+    taskObj[kGeocenterKey] = task.geocenter;
+    taskObj[kRadiusKey] = @(task.radius);
+    taskObj[kVenueKey] = task.venue;
+    return taskObj;
+}
+
 @end

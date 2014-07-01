@@ -35,6 +35,7 @@
         [self presentViewController:logInViewController animated:YES completion:NULL];
     } else{
         //load data
+        NSLog(@"session token: %@", [PFUser currentUser].sessionToken);
         [APIManager pullAllTasks:^(NSArray *tasks) {
             NSLog(@"tasks: %@", tasks);
             

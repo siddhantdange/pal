@@ -11,6 +11,7 @@
 #import "LocAnnotation.h"
 #import "APIManager.h"
 #import "User.h"
+#import "Task.h"
 
 #import <Parse/Parse.h>
 

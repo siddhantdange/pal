@@ -7,13 +7,13 @@
 //
 
 #import "APIManager.h"
-#import "Constants.h"
+#import "Task.h"
 #import "User.h"
 
 @implementation APIManager
 
 +(void)uploadTask:(Task *)task withCompletion:(void (^)(NSError *))completion{
-    PFObject *taskObj = [APIManager PFObjectFromTask:task];
+    PFObject *taskObj = [Task PFObjectFromTask:task];
     [taskObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         //add tasks to user
         [[User sharedInstance].ownedTasks addObject:taskObj];
@@ -55,24 +55,12 @@
     }];
 }
 
-+(PFObject*)PFObjectFromTask:(Task*)task{
-    PFObject *taskObj = [PFObject objectWithClassName:@"Task"];
-    taskObj[kUrgencyKey] = @(task.urgency);
-    taskObj[kAmountKey] = @(task.amount);
-    taskObj[kDescriptionKey] = task.descriptionText;
-    taskObj[kOwnerKey] = task.owner;
-    taskObj[kGeocenterKey] = task.geocenter;
-    taskObj[kRadiusKey] = @(task.radius);
-    taskObj[kVenueKey] = task.venue;
-    return taskObj;
-}
-
 +(void)acceptTask:(Task*)task sent:(void(^)(void))sentBlock completed:(void(^)(NSError*))completionBlock{   
-    PFObject *taskObj = [APIManager PFObjectFromTask:task];
+    //PFObject *taskObj = [Task PFObjectFromTask:task];
     
     //update cloud
     [PFCloud callFunctionInBackground:@"acceptTask"
-                       withParameters:@{@"task" : taskObj}
+                       withParameters:@{@"taskId" : task.obj.objectId}
                                 block:^(NSArray *results, NSError *error) {
                                     completionBlock(error);
                                 }

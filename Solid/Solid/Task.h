@@ -19,5 +19,6 @@
 @property (nonatomic, strong) PFGeoPoint *geocenter;
 
 +(Task*)taskFromPFObject:(PFObject*)obj;
++(PFObject*)PFObjectFromTask:(Task*)task;
 
 @end

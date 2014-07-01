@@ -375,6 +375,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Siddhant Dange";
 				TargetAttributes = {
+					25859ECD192D7E4100CCDD42 = {
+						DevelopmentTeam = QU42UN8Y6G;
+					};
 					25859EEE192D7E4100CCDD42 = {
 						TestTargetID = 25859ECD192D7E4100CCDD42;
 					};
@@ -568,6 +571,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Pradnesh Dange (QR9VEBNXJ6)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/siddange/Projects/Applications/iOS/Solid/Solid,
@@ -577,6 +581,7 @@
 				INFOPLIST_FILE = "Solid/Solid-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "06F8724C-8F09-411B-9257-4DD8B705A28E";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -586,6 +591,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Pradnesh Dange (QR9VEBNXJ6)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/siddange/Projects/Applications/iOS/Solid/Solid,
@@ -595,6 +601,7 @@
 				INFOPLIST_FILE = "Solid/Solid-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "06F8724C-8F09-411B-9257-4DD8B705A28E";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

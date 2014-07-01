@@ -51,6 +51,12 @@
 {
     [super viewWillAppear:animated];
     
+    // Associate the device with a user
+//    PFInstallation *installation = [PFInstallation currentInstallation];
+//    installation[@"user"] = [PFUser currentUser];
+//    [installation addUniqueObject:[PFUser currentUser].objectId forKey:@"channels"];
+//    [installation saveInBackground];
+    
     //remove annotations and update with local copy (from another screen or just loaded)
     [_mapView removeAnnotations:_mapView.annotations];
     

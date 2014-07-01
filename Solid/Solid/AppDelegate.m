@@ -19,10 +19,32 @@
     [Parse setApplicationId:@"amBfyHfkqcjWSIH1tteESSpiHI3ZEkz3Xuk0eGNF"
                   clientKey:@"TD1BdBfbItZOJg1mHlRFkb1HTigpu4Yt9hEST3tt"];
     
+    [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|
+     UIRemoteNotificationTypeAlert|
+     UIRemoteNotificationTypeSound];
+    
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
      [PFFacebookUtils initializeFacebook];
     
     return YES;
+}
+
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackground];
+}
+
+- (void)application:(UIApplication *)application
+didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [PFPush handlePush:userInfo];
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
+    NSLog(@"failed to accept push: %@", error);
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

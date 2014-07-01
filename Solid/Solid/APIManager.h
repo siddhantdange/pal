@@ -9,9 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 
-#import "Task.h"
 
-
+@class Task;
 @interface APIManager : NSObject
 
 +(void)uploadTask:(Task*)task withCompletion:(void(^)(NSError*))completion;
