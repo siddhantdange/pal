@@ -107,7 +107,7 @@ Parse.Cloud.define("acceptTask", function(request, response){
 		acceptedTasksRelation.add(taskObj);
 		return venueObj.save();
 	}).then(function(result){
-		sendPushToUserWithMessage("" + request.user.id, "accepted task!", function(result){
+		sendPushToUserWithMessage("" + taskObj.get('owner').id, "accepted task!", function(result){
 			response.success(1);
 		}, function(error){
 			response.error(error);
