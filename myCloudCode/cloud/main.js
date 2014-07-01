@@ -106,23 +106,20 @@ Parse.Cloud.define("acceptTask", function(request, response){
 		var acceptedTasksRelation = venueObj.relation("acceptedTasks");   
 		acceptedTasksRelation.add(taskObj);
 		return venueObj.save();
+	}).then(function(result){ //move task to accepted tasks for user
+		var user = request.user;
+		var acceptedTasksRelation = user.relation('tasksAccepted');
+		acceptedTasksRelation.add(taskObj);
+		return user.save();
 	}).then(function(result){
-		sendPushToUserWithMessage("" + taskObj.get('owner').id, "accepted task!", function(result){
+		sendPushToUserWithMessage("" + taskObj.get('owner').id, "accepted task!", function(result){   
 			response.success(1);
 		}, function(error){
 			response.error(error);
 		});
 	}, function(error){
 		response.error(error);
-	})
-
-
-	//update venue -> move from regular to "accepted tasks"
-
-	//update user -> accepted tasks
-	//send push notification to task owner that their task has been accepted by __name__
-
-
+	}); 
 });
 
 
