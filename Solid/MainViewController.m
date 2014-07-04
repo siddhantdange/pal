@@ -105,6 +105,8 @@
            // annotationView.annotation = annotation;
         }
         
+        NSLog(@"");
+        
         return annotationView;
         
         //TODO 
