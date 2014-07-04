@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		250B71C11963F290004002B0 /* ProfileScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 250B71C01963F290004002B0 /* ProfileScreen.m */; };
+		250B71C31963F29F004002B0 /* ProfileScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 250B71C21963F29F004002B0 /* ProfileScreen.xib */; };
 		254527D1192E79CF00A1633C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 254527CF192E79C500A1633C /* MapKit.framework */; };
 		254527DB192E9E2900A1633C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 254527D2192E9E2900A1633C /* AudioToolbox.framework */; };
 		254527DC192E9E2900A1633C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 254527D3192E9E2900A1633C /* CFNetwork.framework */; };
@@ -63,6 +65,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		250B71BF1963F290004002B0 /* ProfileScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileScreen.h; sourceTree = "<group>"; };
+		250B71C01963F290004002B0 /* ProfileScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileScreen.m; sourceTree = "<group>"; };
+		250B71C21963F29F004002B0 /* ProfileScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileScreen.xib; sourceTree = "<group>"; };
 		254527CF192E79C500A1633C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		254527D2192E9E2900A1633C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		254527D3192E9E2900A1633C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -164,6 +169,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		250B71BE1963F27B004002B0 /* ProfileScreen */ = {
+			isa = PBXGroup;
+			children = (
+				250B71BF1963F290004002B0 /* ProfileScreen.h */,
+				250B71C01963F290004002B0 /* ProfileScreen.m */,
+				250B71C21963F29F004002B0 /* ProfileScreen.xib */,
+			);
+			name = ProfileScreen;
+			sourceTree = "<group>";
+		};
 		25859EC5192D7E4100CCDD42 = {
 			isa = PBXGroup;
 			children = (
@@ -258,6 +273,7 @@
 		25859F06192D7E5200CCDD42 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				250B71BE1963F27B004002B0 /* ProfileScreen */,
 				25BF5C291959522C00425652 /* Screen */,
 				25BF5C2F1959561700425652 /* TaskDetailScreen */,
 				254527E6192FD26700A1633C /* PostViewController.h */,
@@ -412,6 +428,7 @@
 				25859EDC192D7E4100CCDD42 /* InfoPlist.strings in Resources */,
 				25BF5C2E1959561400425652 /* TaskDetailScreen.xib in Resources */,
 				25C10D831935BB1100CED3A1 /* arrest.png in Resources */,
+				250B71C31963F29F004002B0 /* ProfileScreen.xib in Resources */,
 				25859EE5192D7E4100CCDD42 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -439,6 +456,7 @@
 				254527E8192FD26700A1633C /* PostViewController.m in Sources */,
 				25C10D951939E4EB00CED3A1 /* MainViewController.m in Sources */,
 				25BF5C2C195954A800425652 /* TaskDetailScreen.m in Sources */,
+				250B71C11963F290004002B0 /* ProfileScreen.m in Sources */,
 				25C10D8C1939D30900CED3A1 /* APIManager.m in Sources */,
 				25C10D981939E62500CED3A1 /* SplashViewController.m in Sources */,
 				25C10D811933D06E00CED3A1 /* LocAnnotation.m in Sources */,

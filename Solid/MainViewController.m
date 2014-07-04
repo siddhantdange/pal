@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *prioritySwitch;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic, strong) LocationPinPopup *popup;
+@property (nonatomic, assign) BOOL zoomed;
 
 @end
 
@@ -43,8 +44,8 @@
 	// Do any additional setup after loading the view.
     
     [self.mapView setDelegate:self];
-    [self.mapView setUserTrackingMode:MKUserTrackingModeFollow];
     [self.mapView setShowsUserLocation:YES];
+    _zoomed = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -67,16 +68,24 @@
         annotation.task = [Task taskFromPFObject:task];
         [_mapView addAnnotation:annotation];
     }
+    
+    MKCoordinateRegion mapRegion;
+    mapRegion.center = self.mapView.userLocation.coordinate;
+    mapRegion.span = MKCoordinateSpanMake(0.2, 0.2);
+    [self.mapView setRegion:mapRegion animated: YES];
 }
 
 
 #pragma -mark MKMapViewDelegate
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
-    MKCoordinateRegion mapRegion;
-    mapRegion.center = self.mapView.userLocation.coordinate;
-    mapRegion.span = MKCoordinateSpanMake(0.2, 0.2);
-    [self.mapView setRegion:mapRegion animated: YES];
+    
+    if(!_zoomed){
+        MKCoordinateRegion mapRegion;
+        mapRegion.center = self.mapView.userLocation.coordinate;
+        mapRegion.span = MKCoordinateSpanMake(0.2, 0.2);
+        [self.mapView setRegion:mapRegion animated: YES];
+    }
 }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
@@ -85,22 +94,20 @@
         LocAnnotation *locAnn = (LocAnnotation*)annotation;
         LocationPinPopup *annotationView = (LocationPinPopup *) [self.mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
         if (annotationView == nil) {
-            annotationView = [[LocationPinPopup alloc] initWithTask:locAnn.task annotation:locAnn reuseIdentifier:identifier popupBlock:^{
-                [self goToScreen:@"TaskDetailScreen" animated:YES withData:@{ @"task": locAnn.task}];
+            annotationView = [[LocationPinPopup alloc] initWithTask:locAnn.task annotation:locAnn reuseIdentifier:identifier popupBlock:^(NSDictionary *data) {
+                [self goToScreen:@"TaskDetailScreen" animated:YES withData:data];
             }];
             annotationView.enabled = YES;
             
             
         } else {
-            annotationView.annotation = annotation;
+            [annotationView setAnnotation:locAnn andTask:locAnn.task];
+           // annotationView.annotation = annotation;
         }
         
         return annotationView;
         
-        //TODO find out how accepted, owned, and visible task system works
-        //write cloud code for accepting tasks
-        //  updates cloud
-        //  send push notification to task owner
+        //TODO 
         //once accepted work on 'main screen'
         //later- profile view: owned tasks, money made, number tasks done, tasks done detail?, account    details
         //work on image uploads/check

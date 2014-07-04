@@ -12,6 +12,10 @@
 static User *gInstance;
 @implementation User
 
+-(void)populateFieldsWithPFUser:(PFUser*)user{
+    self.user = user;
+}
+
 
 + (instancetype)sharedInstance {
     static dispatch_once_t onceToken;

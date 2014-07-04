@@ -17,7 +17,7 @@
 @property (nonatomic, strong) NSString *emailUserId;
 
 
-
+-(void)populateFieldsWithPFUser:(PFUser*)user;
 
 +(instancetype)sharedInstance;
 

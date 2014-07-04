@@ -10,6 +10,7 @@
 #import "MainViewController.h"
 #import "APIManager.h"
 #import "LoginViewController.h"
+#import "User.h"
 
 @interface SplashViewController ()
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
@@ -34,6 +35,11 @@
         // Present Log In View Controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
     } else{
+        
+        
+        [[User sharedInstance] populateFieldsWithPFUser:[PFUser currentUser]];
+        
+        
         //load data
         NSLog(@"session token: %@", [PFUser currentUser].sessionToken);
         [APIManager pullAllTasks:^(NSArray *tasks) {

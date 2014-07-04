@@ -15,20 +15,21 @@
 @property (nonatomic, weak) IBOutlet UIView *mainView;
 @property (nonatomic, weak) IBOutlet UILabel *priceLabel;
 @property (nonatomic, weak) IBOutlet UIButton *infoButton;
-@property (nonatomic, strong) Task *task;
-@property (nonatomic, copy) void(^clickBlock)(void);
+@property (nonatomic, copy) void(^clickBlock)(NSDictionary*);
 
 @end
 
 @implementation LocationPinPopup
 
--(id)initWithTask:(Task*)task annotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString*)identifier popupBlock:(void(^)(void))clickBlock{
+-(id)initWithTask:(Task*)task annotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString*)identifier popupBlock:(void(^)(NSDictionary*))clickBlock{
     self = [self initWithAnnotation:annotation reuseIdentifier:identifier];
     
     if(self){
+        [self setAnnotation:annotation andTask:task];
+        
         //init views
         _mainView = [[[NSBundle mainBundle] loadNibNamed:@"LocationPinPopup" owner:self   options:nil] objectAtIndex:0];
-        _task = task;
+       // _task = task;
         [_priceLabel setText:[NSString stringWithFormat:@"$%0.2f", task.amount]];
         _clickBlock = clickBlock;
         _mainView.alpha = 1.0f;
@@ -38,6 +39,12 @@
     }
     
     return self;
+}
+
+-(void)setAnnotation:(id<MKAnnotation>)annotation andTask:(Task*)task{
+    self.annotation = annotation;
+    _task = task;
+    [self.priceLabel setText:[NSString stringWithFormat:@"%0.2f", _task.amount]];
 }
 
 -(void)show{
@@ -56,7 +63,7 @@
 }
 
 -(IBAction)detailButtonPressed:(id)sender{
-    _clickBlock();
+    _clickBlock(@{@"task" : _task});
 }
 
 

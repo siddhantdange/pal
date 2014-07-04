@@ -41,7 +41,6 @@
 	// Do any additional setup after loading the view.
     
     [self.mapView setDelegate:self];
-    [self.mapView setUserTrackingMode:MKUserTrackingModeFollow];
     [self.mapView setShowsUserLocation:YES];
     
     _amountTextField.delegate = self;
@@ -61,7 +60,6 @@
     int urgency = (int)self.urgencySwitch.selectedSegmentIndex;
     float amount = self.amountTextField.text.floatValue;
     NSString *description = self.descriptionTextField.text;
-    PFUser *user = [PFUser currentUser];
     float latDelta = _mapView.region.span.latitudeDelta/2.0;
     int radius = [[[CLLocation alloc] initWithLatitude:_mapView.center.x longitude:_mapView.center.y - latDelta] distanceFromLocation:[[CLLocation alloc] initWithLatitude:_mapView.center.x longitude:_mapView.center.y + latDelta]];
     CLLocationCoordinate2D location2d = _mapView.region.center;

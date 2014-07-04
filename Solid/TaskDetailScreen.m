@@ -40,13 +40,15 @@
 }
 
 - (IBAction)taskAccepted:(id)sender {
-    //save to local
-    [[User sharedInstance].acceptedTasks addObject:_task];
     
     //update on cloud
     [APIManager acceptTask:_task sent:^{
         NSLog(@"accepted sent!");
         [self popScreen];
+        
+        //update local
+        [[User sharedInstance].visibleTasks removeObject:_task.obj];
+        [[User sharedInstance].acceptedTasks addObject:_task];
     } completed:^(NSError *error) {
         NSLog(@"had %@ error accepting task", error);
     }];

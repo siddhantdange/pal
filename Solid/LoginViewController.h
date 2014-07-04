@@ -11,6 +11,7 @@
 
 @interface LoginViewController : PFLogInViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
+-(void)populateFieldsWithPFUser:(PFUser*)user;
 -(id)initVC;
 
 @end
