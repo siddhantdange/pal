@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "25859ECD192D7E4100CCDD42"
-               BuildableName = "Solid.app"
-               BlueprintName = "Solid"
-               ReferencedContainer = "container:Solid.xcodeproj">
+               BuildableName = "Pal.app"
+               BlueprintName = "Pal"
+               ReferencedContainer = "container:Pal.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "25859EEE192D7E4100CCDD42"
-               BuildableName = "SolidTests.xctest"
-               BlueprintName = "SolidTests"
-               ReferencedContainer = "container:Solid.xcodeproj">
+               BuildableName = "PalTests.xctest"
+               BlueprintName = "PalTests"
+               ReferencedContainer = "container:Pal.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "25859ECD192D7E4100CCDD42"
-            BuildableName = "Solid.app"
-            BlueprintName = "Solid"
-            ReferencedContainer = "container:Solid.xcodeproj">
+            BuildableName = "Pal.app"
+            BlueprintName = "Pal"
+            ReferencedContainer = "container:Pal.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "25859ECD192D7E4100CCDD42"
-            BuildableName = "Solid.app"
-            BlueprintName = "Solid"
-            ReferencedContainer = "container:Solid.xcodeproj">
+            BuildableName = "Pal.app"
+            BlueprintName = "Pal"
+            ReferencedContainer = "container:Pal.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "25859ECD192D7E4100CCDD42"
-            BuildableName = "Solid.app"
-            BlueprintName = "Solid"
-            ReferencedContainer = "container:Solid.xcodeproj">
+            BuildableName = "Pal.app"
+            BlueprintName = "Pal"
+            ReferencedContainer = "container:Pal.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

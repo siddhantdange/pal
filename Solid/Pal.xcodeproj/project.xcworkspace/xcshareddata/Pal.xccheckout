@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>EF2AC562-72C9-4710-B17E-422B2FB8D82F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Pal</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>1B6B1B6D-C3BD-4431-B15B-31186834D6D5</key>
+		<string>https://github.com/siddhantdange/iOS-UI-Components</string>
+		<key>8BF195E4-89A2-40E7-B2EB-79FB47C95983</key>
+		<string>https://github.com/siddhantdange/pal</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Solid/Pal.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>1B6B1B6D-C3BD-4431-B15B-31186834D6D5</key>
+		<string>../../../../../../Modules/iOS/UI</string>
+		<key>8BF195E4-89A2-40E7-B2EB-79FB47C95983</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/siddhantdange/pal</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>8BF195E4-89A2-40E7-B2EB-79FB47C95983</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8BF195E4-89A2-40E7-B2EB-79FB47C95983</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Solid</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>1B6B1B6D-C3BD-4431-B15B-31186834D6D5</string>
+			<key>IDESourceControlWCCName</key>
+			<string>UI</string>
+		</dict>
+	</array>
+</dict>
+</plist>

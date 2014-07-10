@@ -53,6 +53,7 @@
     mapRegion.center = self.mapView.userLocation.coordinate;
     mapRegion.span = MKCoordinateSpanMake(0.2, 0.2);
     [self.mapView setRegion:mapRegion animated: YES];
+    [_mapView setUserTrackingMode:MKUserTrackingModeNone];
 }
 
 
@@ -71,7 +72,7 @@
     task.descriptionText = description;
     task.owner = [User sharedInstance].user;
     task.geocenter = location;
-    task.radius = radius;
+    task.radius = radius/2.0f;
     task.venue = [User sharedInstance].venue;
     
     [APIManager uploadTask:task withCompletion:^(NSError *error) {

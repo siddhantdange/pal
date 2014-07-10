@@ -9,6 +9,8 @@
 #import "MainViewController.h"
 #import "LocationPinPopup.h"
 #import "LocAnnotation.h"
+#import "HorizontalTableView.h"
+#import "TaskSliderCell.h"
 #import "User.h"
 #import "Task.h"
 
@@ -18,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *prioritySwitch;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic, strong) LocationPinPopup *popup;
+@property (nonatomic, strong) HorizontalTableView *tb;
 @property (nonatomic, assign) BOOL zoomed;
 
 @end
@@ -46,17 +49,18 @@
     [self.mapView setDelegate:self];
     [self.mapView setShowsUserLocation:YES];
     _zoomed = NO;
+    
+    CGRect screen = [UIScreen mainScreen].bounds;
+    _tb = [[HorizontalTableView alloc] initWithCellNibNames:@[@"TaskSliderCell"] andFrame:CGRectMake(0.0f, screen.size.height - 100.0f, screen.size.width, 3.0f)];
+    _tb.delegate = self;
+    _tb.dataSource = self;
+    [self.view addSubview:_tb];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    // Associate the device with a user
-//    PFInstallation *installation = [PFInstallation currentInstallation];
-//    installation[@"user"] = [PFUser currentUser];
-//    [installation addUniqueObject:[PFUser currentUser].objectId forKey:@"channels"];
-//    [installation saveInBackground];
     
     //remove annotations and update with local copy (from another screen or just loaded)
     [_mapView removeAnnotations:_mapView.annotations];
@@ -73,6 +77,65 @@
     mapRegion.center = self.mapView.userLocation.coordinate;
     mapRegion.span = MKCoordinateSpanMake(0.2, 0.2);
     [self.mapView setRegion:mapRegion animated: YES];
+    
+    if(tasks.count == 0){
+        [_tb removeFromSuperview];
+    } else{
+        if(_tb.superview == nil){
+            [self.view addSubview:_tb];
+        }
+        [_tb reloadData];
+    }
+}
+
+#pragma -mark UITableViewDataSource Methods
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    int numRows = (int)_mapView.annotations.count;
+    return numRows;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{   
+    
+    // Identifier for retrieving reusable cells.
+    static NSString *cellIdentifier = @"TaskSliderCell";
+    
+    // Attempt to request the reusable cell.
+    TaskSliderCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    // No cell available - create one.
+    if(cell == nil) {
+        cell = [[TaskSliderCell alloc] init];
+    }
+    
+    if(![_mapView.annotations[indexPath.row] isKindOfClass:[MKUserLocation class]]){
+        LocAnnotation *ann = _mapView.annotations[indexPath.row];
+        [cell prepWithLocationAnnotation:ann];
+        
+        //set annotation view visible
+        [UIView animateWithDuration:0.2f animations:^{
+            [[_mapView viewForAnnotation:ann] setAlpha:1.0f];
+            [[_mapView viewForAnnotation:ann] setEnabled:YES];
+        }];
+    }
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([tableView.indexPathsForVisibleRows indexOfObject:indexPath] == NSNotFound){
+        
+        //set annotation view invisible
+        [UIView animateWithDuration:0.2f animations:^{
+            [[_mapView viewForAnnotation:_mapView.annotations[indexPath.row]] setAlpha:0.0f];
+            [[_mapView viewForAnnotation:_mapView.annotations[indexPath.row]] setEnabled:NO];
+        }];
+    }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self mapView:_mapView didSelectAnnotationView:[_mapView viewForAnnotation:_mapView.annotations[indexPath.row]]];
 }
 
 
@@ -80,12 +143,12 @@
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
     
-    if(!_zoomed){
-        MKCoordinateRegion mapRegion;
-        mapRegion.center = self.mapView.userLocation.coordinate;
-        mapRegion.span = MKCoordinateSpanMake(0.2, 0.2);
-        [self.mapView setRegion:mapRegion animated: YES];
-    }
+    MKCoordinateRegion mapRegion;
+    mapRegion.center = userLocation.coordinate;
+    mapRegion.span = MKCoordinateSpanMake(0.2, 0.2);
+    [self.mapView setRegion:mapRegion animated: YES];
+    [_mapView setUserTrackingMode:MKUserTrackingModeNone];
+    //[self.mapView setShowsUserLocation:NO];
 }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
@@ -97,19 +160,25 @@
             annotationView = [[LocationPinPopup alloc] initWithTask:locAnn.task annotation:locAnn reuseIdentifier:identifier popupBlock:^(NSDictionary *data) {
                 [self goToScreen:@"TaskDetailScreen" animated:YES withData:data];
             }];
-            annotationView.enabled = YES;
+            
+            if([_mapView.annotations indexOfObject:annotation] > 3){
+                [annotationView setAlpha:0.0f];
+                annotationView.enabled = NO;
+            } else{
+                [annotationView setAlpha:1.0f];
+                annotationView.enabled = YES;
+            }
             
             
         } else {
             [annotationView setAnnotation:locAnn andTask:locAnn.task];
-           // annotationView.annotation = annotation;
         }
-        
-        NSLog(@"");
         
         return annotationView;
         
-        //TODO 
+        //TODO
+        //fix task view
+            //horizontal scrolling on bottom, when new item enters, item enters on screen
         //once accepted work on 'main screen'
         //later- profile view: owned tasks, money made, number tasks done, tasks done detail?, account    details
         //work on image uploads/check
@@ -155,7 +224,6 @@
                 MKAnnotationView *view = [mapView viewForAnnotation:anno];
                 [UIView animateWithDuration:0.2f animations:^{
                     [view setAlpha:0.0f];
-                    [view setUserInteractionEnabled:NO];
                 }];
             }
         }
@@ -197,10 +265,11 @@
                 NSArray *annotations = _mapView.annotations;
                 for (id<MKAnnotation> anno in annotations) {
                     MKAnnotationView *view = [_mapView viewForAnnotation:anno];
-                    [UIView animateWithDuration:0.2f animations:^{
-                        [view setAlpha:1.0f];
-                        [view setUserInteractionEnabled:YES];
-                    }];
+                    if(view.enabled){
+                        [UIView animateWithDuration:0.2f animations:^{
+                            [view setAlpha:1.0f];
+                        }];
+                    }
                 }
             }
         }

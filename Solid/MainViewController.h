@@ -9,6 +9,6 @@
 #import <MapKit/MapKit.h>
 #import "Screen.h"
 
-@interface MainViewController : Screen <MKMapViewDelegate>
+@interface MainViewController : Screen <MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @end
