@@ -161,7 +161,7 @@
                 [self goToScreen:@"TaskDetailScreen" animated:YES withData:data];
             }];
             
-            if([_mapView.annotations indexOfObject:annotation] > 3){
+            if([_mapView.annotations indexOfObject:annotation] > 4){
                 [annotationView setAlpha:0.0f];
                 annotationView.enabled = NO;
             } else{
