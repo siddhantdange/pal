@@ -148,7 +148,7 @@
     mapRegion.span = MKCoordinateSpanMake(0.2, 0.2);
     [self.mapView setRegion:mapRegion animated: YES];
     [_mapView setUserTrackingMode:MKUserTrackingModeNone];
-    //[self.mapView setShowsUserLocation:NO];
+    [self.mapView setShowsUserLocation:NO];
 }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
